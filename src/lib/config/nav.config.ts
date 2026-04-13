@@ -26,6 +26,14 @@ export const leftNavItems: NavItem[] = [
 		]
 	},
 	{
+		id: 'examples-nav',
+		label: 'Examples',
+		children: [
+			{ id: 'data-table', label: 'Data Table', href: '/examples' },
+			{ id: 'file-tree', label: 'File Tree', href: '/examples/file-tree' }
+		]
+	},
+	{
 		id: 'components',
 		label: 'Components',
 		children: [
