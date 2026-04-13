@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8080
+      - PUBLIC_APP_ENV=development
+      - PUBLIC_AUTH_ENABLED=true
+      - PUBLIC_DEFAULT_DATA_SOURCE=local-db
+      - DATABASE_URL=/app/data/app.db
+      - CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+    volumes:
+      - sqlite-data:/app/data
+
+volumes:
+  sqlite-data:

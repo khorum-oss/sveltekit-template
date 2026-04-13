@@ -1,0 +1,49 @@
+name: Merge Main
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: merge-main
+  cancel-in-progress: false
+
+jobs:
+  version:
+    name: Version Bump
+    uses: violabs/public-cicd/.github/workflows/version-bump.yml@main
+    secrets: inherit
+
+  docker-publish:
+    name: Docker Build & Push
+    needs: [version]
+    uses: violabs/public-cicd/.github/workflows/docker-build-push.yml@main
+    secrets: inherit
+    with:
+      image-name: ghcr.io/${{ github.repository }}
+      version: ${{ needs.version.outputs.version }}
+
+  release:
+    name: GitHub Release
+    needs: [version, docker-publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: gh release create "v${VERSION}" --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify-discord:
+    name: Discord Notification
+    needs: [version, docker-publish, release]
+    if: always()
+    uses: violabs/public-cicd/.github/workflows/notify-discord.yml@main
+    secrets: inherit
+    with:
+      status: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+      message: 'Release published'
