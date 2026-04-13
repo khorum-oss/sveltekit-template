@@ -9,15 +9,11 @@
 	});
 </script>
 
-<Story name="Simple">
-	<Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Current Page' }]} />
-</Story>
+<Story name="Simple" args={{ items: [{ label: 'Home', href: '/' }, { label: 'Current Page' }] }} />
 
-<Story name="Deep Path">
-	<Breadcrumb items={[
-		{ label: 'Home', href: '/' },
-		{ label: 'Docs', href: '/docs' },
-		{ label: 'Components', href: '/docs/components' },
-		{ label: 'UI Elements' },
-	]} />
-</Story>
+<Story name="Deep Path" args={{ items: [
+	{ label: 'Home', href: '/' },
+	{ label: 'Docs', href: '/docs' },
+	{ label: 'Components', href: '/docs/components' },
+	{ label: 'UI Elements' },
+] }} />

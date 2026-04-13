@@ -1,6 +1,7 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import FileTree from '$lib/components/ui/FileTree.svelte';
+	import type { FileNode } from '$lib/types/file-tree';
 
 	const { Story } = defineMeta({
 		title: 'Data/FileTree',
@@ -8,68 +9,68 @@
 		tags: ['autodocs'],
 	});
 
-	const simpleTree = [
+	const simpleTree: FileNode[] = [
 		{
 			name: 'src',
-			type: 'folder' as const,
+			type: 'folder',
 			children: [
-				{ name: 'index.ts', type: 'file' as const, meta: '0.5 KB' },
-				{ name: 'utils.ts', type: 'file' as const, meta: '1.2 KB' },
+				{ name: 'index.ts', type: 'file', meta: '0.5 KB' },
+				{ name: 'utils.ts', type: 'file', meta: '1.2 KB' },
 				{
 					name: 'components',
-					type: 'folder' as const,
+					type: 'folder',
 					children: [
-						{ name: 'Button.svelte', type: 'file' as const, meta: '1.1 KB' },
-						{ name: 'Modal.svelte', type: 'file' as const, meta: '1.5 KB' },
+						{ name: 'Button.svelte', type: 'file', meta: '1.1 KB' },
+						{ name: 'Modal.svelte', type: 'file', meta: '1.5 KB' },
 					]
 				}
 			]
 		},
-		{ name: 'package.json', type: 'file' as const, meta: '2.1 KB' },
-		{ name: 'README.md', type: 'file' as const, meta: '3.4 KB' },
+		{ name: 'package.json', type: 'file', meta: '2.1 KB' },
+		{ name: 'README.md', type: 'file', meta: '3.4 KB' },
 	];
 
-	const deepTree = [
+	const deepTree: FileNode[] = [
 		{
 			name: 'project',
-			type: 'folder' as const,
+			type: 'folder',
 			children: [
 				{
 					name: 'apps',
-					type: 'folder' as const,
+					type: 'folder',
 					children: [
 						{
 							name: 'web',
-							type: 'folder' as const,
+							type: 'folder',
 							children: [
-								{ name: 'index.html', type: 'file' as const },
-								{ name: 'app.ts', type: 'file' as const },
+								{ name: 'index.html', type: 'file' },
+								{ name: 'app.ts', type: 'file' },
 								{
 									name: 'pages',
-									type: 'folder' as const,
+									type: 'folder',
 									children: [
-										{ name: 'home.svelte', type: 'file' as const },
-										{ name: 'about.svelte', type: 'file' as const },
+										{ name: 'home.svelte', type: 'file' },
+										{ name: 'about.svelte', type: 'file' },
 									]
 								}
 							]
 						},
 						{
 							name: 'api',
-							type: 'folder' as const,
+							type: 'folder',
 							children: [
-								{ name: 'server.ts', type: 'file' as const },
-								{ name: 'routes.ts', type: 'file' as const },
+								{ name: 'server.ts', type: 'file' },
+								{ name: 'routes.ts', type: 'file' },
 							]
 						}
 					]
 				},
 				{
 					name: 'packages',
-					type: 'folder' as const,
+					type: 'folder',
 					children: [
-						{ name: 'ui', type: 'folder' as const, children: [{ name: 'index.ts', type: 'file' as const }] },
-						{ name: 'config', type: 'folder' as const, children: [{ name: 'tsconfig.json', type: 'file' as const }] },
+						{ name: 'ui', type: 'folder', children: [{ name: 'index.ts', type: 'file' }] },
+						{ name: 'config', type: 'folder', children: [{ name: 'tsconfig.json', type: 'file' }] },
 					]
 				}
 			]
@@ -77,20 +78,26 @@
 	];
 </script>
 
-<Story name="Simple">
-	<div style="max-width: 400px;">
-		<FileTree nodes={simpleTree} />
-	</div>
+<Story name="Simple" args={{ nodes: simpleTree }}>
+	{#snippet children()}
+		<div style="max-width: 400px;">
+			<FileTree nodes={simpleTree} />
+		</div>
+	{/snippet}
 </Story>
 
-<Story name="Deep Nesting">
-	<div style="max-width: 400px;">
-		<FileTree nodes={deepTree} />
-	</div>
+<Story name="Deep Nesting" args={{ nodes: deepTree }}>
+	{#snippet children()}
+		<div style="max-width: 400px;">
+			<FileTree nodes={deepTree} />
+		</div>
+	{/snippet}
 </Story>
 
-<Story name="Single File">
-	<div style="max-width: 400px;">
-		<FileTree nodes={[{ name: 'README.md', type: 'file', meta: '1.2 KB' }]} />
-	</div>
+<Story name="Single File" args={{ nodes: [{ name: 'README.md', type: 'file', meta: '1.2 KB' }] }}>
+	{#snippet children()}
+		<div style="max-width: 400px;">
+			<FileTree nodes={[{ name: 'README.md', type: 'file', meta: '1.2 KB' }]} />
+		</div>
+	{/snippet}
 </Story>

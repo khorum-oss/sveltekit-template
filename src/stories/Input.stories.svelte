@@ -14,22 +14,12 @@
 	});
 </script>
 
-<Story name="Default">
-	<Input label="Name" placeholder="Enter your name" />
-</Story>
+<Story name="Default" args={{ label: 'Name', placeholder: 'Enter your name' }} />
 
-<Story name="With Value">
-	<Input label="Email" type="email" value="user@example.com" />
-</Story>
+<Story name="With Value" args={{ label: 'Email', type: 'email', value: 'user@example.com' }} />
 
-<Story name="With Error">
-	<Input label="Username" value="a" error="Username must be at least 3 characters" />
-</Story>
+<Story name="With Error" args={{ label: 'Username', value: 'a', error: 'Username must be at least 3 characters' }} />
 
-<Story name="Disabled">
-	<Input label="Read Only" value="Cannot edit" disabled />
-</Story>
+<Story name="Disabled" args={{ label: 'Read Only', value: 'Cannot edit', disabled: true }} />
 
-<Story name="Password">
-	<Input label="Password" type="password" placeholder="Enter password" />
-</Story>
+<Story name="Password" args={{ label: 'Password', type: 'password', placeholder: 'Enter password' }} />

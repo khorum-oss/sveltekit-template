@@ -12,22 +12,8 @@
 	});
 </script>
 
-<Story name="Small">
-	<Spinner size="sm" />
-</Story>
+<Story name="Small" args={{ size: 'sm' }} />
 
-<Story name="Medium">
-	<Spinner size="md" />
-</Story>
+<Story name="Medium" args={{ size: 'md' }} />
 
-<Story name="Large">
-	<Spinner size="lg" />
-</Story>
-
-<Story name="All Sizes">
-	<div style="display: flex; gap: 16px; align-items: center;">
-		<Spinner size="sm" />
-		<Spinner size="md" />
-		<Spinner size="lg" />
-	</div>
-</Story>
+<Story name="Large" args={{ size: 'lg' }} />

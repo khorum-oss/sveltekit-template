@@ -13,27 +13,18 @@
 		{ value: 'editor', label: 'Editor' },
 		{ value: 'viewer', label: 'Viewer' },
 	];
+
+	const optionsWithDisabled = [
+		{ value: 'free', label: 'Free' },
+		{ value: 'pro', label: 'Pro' },
+		{ value: 'enterprise', label: 'Enterprise (contact us)', disabled: true },
+	];
 </script>
 
-<Story name="Default">
-	<Dropdown label="Role" {options} placeholder="Choose a role..." />
-</Story>
+<Story name="Default" args={{ label: 'Role', options, placeholder: 'Choose a role...' }} />
 
-<Story name="With Selected">
-	<Dropdown label="Role" {options} value="editor" />
-</Story>
+<Story name="With Selected" args={{ label: 'Role', options, value: 'editor' }} />
 
-<Story name="Disabled">
-	<Dropdown label="Role" {options} value="admin" disabled />
-</Story>
+<Story name="Disabled" args={{ label: 'Role', options, value: 'admin', disabled: true }} />
 
-<Story name="With Disabled Option">
-	<Dropdown
-		label="Plan"
-		options={[
-			{ value: 'free', label: 'Free' },
-			{ value: 'pro', label: 'Pro' },
-			{ value: 'enterprise', label: 'Enterprise (contact us)', disabled: true },
-		]}
-	/>
-</Story>
+<Story name="With Disabled Option" args={{ label: 'Plan', options: optionsWithDisabled }} />

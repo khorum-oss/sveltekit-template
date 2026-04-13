@@ -21,14 +21,10 @@
 	];
 </script>
 
-<Story name="Default">
-	<Tabs tabs={basicTabs}>
-		<p>Tab content appears here. Switch tabs above.</p>
-	</Tabs>
+<Story name="Default" args={{ tabs: basicTabs }}>
+	<p>Tab content appears here. Switch tabs above.</p>
 </Story>
 
-<Story name="With Badges">
-	<Tabs tabs={badgeTabs}>
-		<p>Tabs can display count badges.</p>
-	</Tabs>
+<Story name="With Badges" args={{ tabs: badgeTabs }}>
+	<p>Tabs can display count badges.</p>
 </Story>

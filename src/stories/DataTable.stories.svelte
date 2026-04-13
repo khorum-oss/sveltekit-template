@@ -1,65 +1,66 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import DataTable from '$lib/components/ui/DataTable.svelte';
-	import Badge from '$lib/components/ui/Badge.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Data/DataTable',
-		component: DataTable,
 		tags: ['autodocs'],
 	});
 
-	const sampleData = [
-		{ id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', status: 'active' },
-		{ id: '2', name: 'Bob Smith', email: 'bob@example.com', role: 'Editor', status: 'active' },
-		{ id: '3', name: 'Carol White', email: 'carol@example.com', role: 'Viewer', status: 'inactive' },
-		{ id: '4', name: 'Dan Brown', email: 'dan@example.com', role: 'Editor', status: 'pending' },
+	const sampleData = Array.from({ length: 25 }, (_, i) => ({
+		id: String(i + 1),
+		name: ['Alice Johnson', 'Bob Smith', 'Carol White', 'Dan Brown', 'Eve Davis', 'Frank Miller', 'Grace Lee', 'Hank Wilson'][i % 8],
+		email: `user${i + 1}@example.com`,
+		role: ['Admin', 'Editor', 'Viewer'][i % 3],
+		status: ['active', 'inactive', 'pending'][i % 3],
+	}));
+
+	const basicColumns = [
+		{ key: 'name', label: 'Name', sortable: true },
+		{ key: 'email', label: 'Email', sortable: true },
+		{ key: 'role', label: 'Role', sortable: true },
+		{ key: 'status', label: 'Status' },
 	];
 </script>
 
 <Story name="Basic">
 	<DataTable
-		data={sampleData}
-		columns={[
-			{ key: 'name', label: 'Name', sortable: true },
-			{ key: 'email', label: 'Email', sortable: true },
-			{ key: 'role', label: 'Role', sortable: true },
-			{ key: 'status', label: 'Status' },
-		]}
+		data={sampleData.slice(0, 5)}
+		columns={basicColumns}
 	/>
 </Story>
 
-<Story name="Striped">
+<Story name="With Pagination">
 	<DataTable
 		data={sampleData}
-		columns={[
-			{ key: 'name', label: 'Name' },
-			{ key: 'email', label: 'Email' },
-			{ key: 'role', label: 'Role' },
-		]}
+		columns={basicColumns}
+		pageSize={5}
+	/>
+</Story>
+
+<Story name="With Selection">
+	<DataTable
+		data={sampleData.slice(0, 8)}
+		columns={basicColumns}
+		selectable
+		pageSize={5}
+	/>
+</Story>
+
+<Story name="Striped + Compact">
+	<DataTable
+		data={sampleData.slice(0, 10)}
+		columns={basicColumns}
 		striped
-	/>
-</Story>
-
-<Story name="Compact">
-	<DataTable
-		data={sampleData}
-		columns={[
-			{ key: 'name', label: 'Name', sortable: true },
-			{ key: 'role', label: 'Role' },
-			{ key: 'status', label: 'Status' },
-		]}
 		compact
+		pageSize={5}
 	/>
 </Story>
 
 <Story name="Empty">
 	<DataTable
 		data={[]}
-		columns={[
-			{ key: 'name', label: 'Name' },
-			{ key: 'email', label: 'Email' },
-		]}
+		columns={basicColumns}
 		emptyMessage="No users found."
 	/>
 </Story>

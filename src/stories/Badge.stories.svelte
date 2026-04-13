@@ -13,33 +13,16 @@
 	});
 </script>
 
-<Story name="Default">
-	<Badge>Default</Badge>
-</Story>
+<Story name="Default">Default</Story>
 
-<Story name="Primary">
-	<Badge variant="primary">Primary</Badge>
-</Story>
+<Story name="Primary" args={{ variant: 'primary' }}>Primary</Story>
 
-<Story name="Success">
-	<Badge variant="success">Active</Badge>
-</Story>
+<Story name="Success" args={{ variant: 'success' }}>Active</Story>
 
-<Story name="Warning">
-	<Badge variant="warning">Pending</Badge>
-</Story>
+<Story name="Warning" args={{ variant: 'warning' }}>Pending</Story>
 
-<Story name="Danger">
-	<Badge variant="danger">Error</Badge>
-</Story>
+<Story name="Danger" args={{ variant: 'danger' }}>Error</Story>
 
-<Story name="All Variants">
-	<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-		<Badge>Default</Badge>
-		<Badge variant="primary">Primary</Badge>
-		<Badge variant="success">Success</Badge>
-		<Badge variant="warning">Warning</Badge>
-		<Badge variant="danger">Danger</Badge>
-		<Badge variant="info">Info</Badge>
-	</div>
-</Story>
+<Story name="Info" args={{ variant: 'info' }}>Info</Story>
+
+<Story name="Medium Size" args={{ size: 'md', variant: 'primary' }}>Medium</Story>

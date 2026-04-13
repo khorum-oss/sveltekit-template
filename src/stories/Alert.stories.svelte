@@ -13,28 +13,26 @@
 	});
 </script>
 
-<Story name="Info">
-	<Alert variant="info" title="Information">This is an informational message.</Alert>
+<Story name="Info" args={{ variant: 'info', title: 'Information' }}>
+	This is an informational message.
 </Story>
 
-<Story name="Success">
-	<Alert variant="success" title="Success">Operation completed successfully.</Alert>
+<Story name="Success" args={{ variant: 'success', title: 'Success' }}>
+	Operation completed successfully.
 </Story>
 
-<Story name="Warning">
-	<Alert variant="warning" title="Warning">Please review before continuing.</Alert>
+<Story name="Warning" args={{ variant: 'warning', title: 'Warning' }}>
+	Please review before continuing.
 </Story>
 
-<Story name="Error">
-	<Alert variant="error" title="Error">Something went wrong. Please try again.</Alert>
+<Story name="Error" args={{ variant: 'error', title: 'Error' }}>
+	Something went wrong. Please try again.
 </Story>
 
-<Story name="Dismissible">
-	<Alert variant="info" title="Dismissible" dismissible ondismiss={() => {}}>
-		Click the X to dismiss this alert.
-	</Alert>
+<Story name="Dismissible" args={{ variant: 'info', title: 'Dismissible', dismissible: true, ondismiss: () => {} }}>
+	Click the X to dismiss this alert.
 </Story>
 
-<Story name="No Title">
-	<Alert variant="warning">A simple alert without a title heading.</Alert>
+<Story name="No Title" args={{ variant: 'warning' }}>
+	A simple alert without a title heading.
 </Story>
