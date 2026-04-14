@@ -1,31 +1,43 @@
-<script module>
-  import { defineMeta } from '@storybook/addon-svelte-csf';
-  import Button from './Button.svelte';
-  import { fn } from 'storybook/test';
+<script module lang="ts">
+	import { defineMeta } from '@storybook/addon-svelte-csf';
+	import Button from '$lib/components/ui/Button.svelte';
 
-  // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
-  const { Story } = defineMeta({
-    title: 'Example/Button',
-    component: Button,
-    tags: ['autodocs'],
-    argTypes: {
-      backgroundColor: { control: 'color' },
-      size: {
-        control: { type: 'select' },
-        options: ['small', 'medium', 'large'],
-      },
-    },
-    args: {
-      onclick: fn(),
-    }
-  });
+	const { Story } = defineMeta({
+		title: 'UI/Button',
+		tags: ['autodocs'],
+		component: Button,
+		argTypes: {
+			variant: { control: 'select', options: ['primary', 'secondary', 'ghost', 'danger'] },
+			size: { control: 'select', options: ['sm', 'md', 'lg'] },
+			disabled: { control: 'boolean' },
+		},
+	});
 </script>
 
-<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ primary: true, label: 'Button' }} />
+<Story name="Primary" args={{ variant: 'primary' }}>
+	Primary Button
+</Story>
 
-<Story name="Secondary" args={{ label: 'Button' }} />
+<Story name="Secondary" args={{ variant: 'secondary' }}>
+	Secondary Button
+</Story>
 
-<Story name="Large" args={{ size: 'large', label: 'Button' }} />
+<Story name="Ghost" args={{ variant: 'ghost' }}>
+	Ghost Button
+</Story>
 
-<Story name="Small" args={{ size: 'small', label: 'Button' }} />
+<Story name="Danger" args={{ variant: 'danger' }}>
+	Danger Button
+</Story>
+
+<Story name="Small" args={{ size: 'sm' }}>
+	Small
+</Story>
+
+<Story name="Large" args={{ size: 'lg' }}>
+	Large
+</Story>
+
+<Story name="Disabled" args={{ disabled: true }}>
+	Disabled
+</Story>
